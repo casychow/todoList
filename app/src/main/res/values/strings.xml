@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">toDoList</string>
+    <string name="button_calendar">Calendar</string>
 </resources>

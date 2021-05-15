@@ -1,7 +1,10 @@
 package com.example.todolist
 
+import android.content.Intent
+import android.icu.text.DisplayContext
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -35,5 +38,10 @@ class MainActivity : AppCompatActivity() {
             todoAdapter.deleteDoneToDos()
             //WHY DO I NEED AN ADAPTER
         }
+    }
+
+    fun goToCal(view: View) {
+        val intent = Intent(this, calendarActivity::class.java)
+        startActivity(intent)
     }
 }
