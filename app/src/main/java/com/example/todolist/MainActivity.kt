@@ -1,16 +1,16 @@
 package com.example.todolist
 
 import android.content.Intent
-import android.icu.text.DisplayContext
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_main.*
+
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var todoAdapter: TodoAdapter
+    val launchSecondActivity = 1
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,10 +38,35 @@ class MainActivity : AppCompatActivity() {
             todoAdapter.deleteDoneToDos()
             //WHY DO I NEED AN ADAPTER
         }
+
+        btnCal.setOnClickListener {
+            val intent = Intent(this, calendarActivity::class.java)
+            startActivityForResult(intent, launchSecondActivity)
+        }
     }
 
-    fun goToCal(view: View) {
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        //why did adding a question mark to the last Intent fix this issue?
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == launchSecondActivity) {
+            if (resultCode == RESULT_OK) {
+                //go to second activity - NOT COMPLETE YET
+                val result = data?.getStringExtra("result")
+            }
+            /*if (resultCode == RESULT_CANCELED) {
+                //do we need this one?
+            }
+
+             */
+        }
+    } //onActivityResult
+
+
+    /*fun goToCal(view: View) {
+        val launchSecondActivity = 1
         val intent = Intent(this, calendarActivity::class.java)
-        startActivity(intent)
+        //startActivity(intent)
+        startActivityForResult(intent, launchSecondActivity)
     }
+    */
 }
